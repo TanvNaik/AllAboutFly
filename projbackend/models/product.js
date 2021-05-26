@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
     },
     category: {
       type: ObjectId,
-      ref: "Category", //Name while exporting categorySchema
+      ref: "Category",
       required: true
     },
     stock: {

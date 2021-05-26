@@ -1,4 +1,4 @@
-import { v1 as uuidv1 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
@@ -45,14 +45,14 @@ userSchema
   .virtual("password")
   .set(function (password) {
     this._password = password;
-    this.salt = uuuidv1();
+    this.salt = uuidv4();
     this.encry_password = this.securePassword(password);
   })
   .get(function () {
     return this._password;
   });
 
-userSchema.method = {
+userSchema.methods = {
   authenticate: function (plainPassword) {
     return this.securePassword(plainPassword) === this.encry_password
       ? true

@@ -4,9 +4,25 @@ const app = express();
 
 const port = 8000;
 
+const admin = (req, res) => {
+  return res.send("admin dashboard");
+};
+
+const isAdmin = (req, res, next) => {
+  console.log("isAdmin is running");
+  next();
+};
+const isLoggedIn = (req, res, next) => {
+  console.log("Logged In");
+  next();
+};
+
 app.get("/", (req, res) => {
   return res.send("Home page");
 });
+
+app.get("/admin", isLoggedIn, isAdmin, admin);
+
 app.get("/login", (req, res) => {
   return res.send("You are visiting a login route");
 });
