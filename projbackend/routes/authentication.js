@@ -26,7 +26,7 @@ router.post(
 router.post(
   "/signin",
   [
-    check("email").isEmail().withMessage("Email is required"),
+    check("email","Email is required!").isEmail(),
     check("password")
       .isLength({ min: 1 })
       .withMessage("Password field is required")
