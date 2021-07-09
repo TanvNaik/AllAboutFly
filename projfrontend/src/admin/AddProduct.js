@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Base from "../core/Base";
 import { createProduct, getAllCategories } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
 const AddProduct = () => {
   const { user, token } = isAuthenticated();
-
+  const history = useHistory();
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -40,7 +40,11 @@ const AddProduct = () => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        setValues({ ...values, categories: data, formData: new FormData() });
+        setValues({
+          ...values,
+          categories: data,
+          formData: new FormData()
+        });
       }
     });
   };
@@ -70,6 +74,13 @@ const AddProduct = () => {
       }
     });
   };
+  const getaRedirect = () => {
+    if (loading === false && getRedirect === true) {
+      setTimeout(() => {
+        history.push("/");
+      }, 2000);
+    }
+  };
   const succesMessage = () => {
     return (
       <div
@@ -91,15 +102,16 @@ const AddProduct = () => {
     );
   };
   const handleChange = (name) => (event) => {
-    const value = name === "photo" ? event.target.files[0] : event.target.value;
+    let value = name === "photo" ? event.target.files[0] : event.target.value;
+    console.log(formData);
     formData.set(name, value);
-    setValues({ ...value, [name]: value });
+    setValues({ ...values, [name]: value });
   };
 
   const createProductForm = () => (
     <form>
       <span>Post photo</span>
-      <div className='form-group p-1'>
+      <div className='form-group '>
         <label className='btn btn-block btn-success'>
           <input
             onChange={handleChange("photo")}
@@ -113,7 +125,7 @@ const AddProduct = () => {
       <div className='form-group p-1'>
         <input
           onChange={handleChange("name")}
-          name='photo'
+          name='name'
           className='form-control'
           placeholder='Name'
           value={name}
@@ -122,7 +134,7 @@ const AddProduct = () => {
       <div className='form-group p-1'>
         <textarea
           onChange={handleChange("description")}
-          name='photo'
+          name='description'
           className='form-control'
           placeholder='Description'
           value={description}
@@ -185,6 +197,7 @@ const AddProduct = () => {
         <div className='col-md-8 offset-md-2'>
           {errorMessage()}
           {succesMessage()}
+          {getaRedirect()}
           {createProductForm()}
         </div>
       </div>
