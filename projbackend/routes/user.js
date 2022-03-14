@@ -9,8 +9,7 @@ const {
 } = require("../controllers/user");
 const {
   isSignedIn,
-  isAuthenticated,
-  isAdmin
+  isAuthenticated
 } = require("../controllers/authentication");
 
 router.param("userId", getUserById);
