@@ -87,7 +87,7 @@ const Signin = () => {
                 onChange={handleChange("email")}
                 type='email'
               />
-            </div>
+            </div><br/>
             <div className='form-group'>
               <label className='text-light'>Password:</label>
               <input
@@ -97,9 +97,10 @@ const Signin = () => {
                 type='password'
               />
             </div>
+            <br/>
             <br />
             <button onClick={onSubmit} className='btn btn-success w-100'>
-              Submit
+              Signin
             </button>
           </form>
         </div>
@@ -107,12 +108,12 @@ const Signin = () => {
     );
   };
   return (
-    <Base title='Sign In page' description='A page for user to sign In!'>
+    <Base title='' description='Sign-in to an existing Account'>
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className='text-white text-center'>{JSON.stringify(values)}</p>
+      
     </Base>
   );
 };

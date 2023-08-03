@@ -34,21 +34,21 @@ const ManageCategories = () => {
 
   return (
     <Base title='Welcome admin' description='Manage categories here'>
-      <Link className='btn btn-info' to={`/admin/dashboard`}>
+      <Link className='btn btn-success' to={`/admin/dashboard`}>
         <span className=''>Admin Home</span>
       </Link>
       <h2 className='mb-4'>All Categories:</h2>
 
-      <div className='row'>
+      <div className='row bg-light rounded text-dark'>
         <div className='col-12'>
-          <h2 className='text-center text-white my-3'>
+          <h2 className='text-center  my-3' >
             Total {categories.length} categories
-          </h2>
+          </h2><hr/>
           {categories.map((category, index) => {
             return (
-              <div key={index} className='row text-center mb-2 '>
-                <div className='col-4'>
-                  <h3 className='text-white text-left'>{category.name}</h3>
+              <div key={index} className='row text-center mb-2  '>
+                <div className='col-4 rounded'>
+                  <h3 className='text-left'>{category.name}</h3>
                 </div>
                 <div className='col-4'>
                   <Link
@@ -68,6 +68,7 @@ const ManageCategories = () => {
                     Delete
                   </button>
                 </div>
+                <hr/>
               </div>
             );
           })}

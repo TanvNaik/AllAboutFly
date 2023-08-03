@@ -69,7 +69,7 @@ const AdminDashBoard = () => {
     <Base
       title='Welcome to Admin area'
       description='Manage all your products here'
-      className='container bg-success p-4'
+      className='container  p-4 '
     >
       <div className='row'>
         <div className='col-3'>{adminLeftSide()}</div>

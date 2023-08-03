@@ -64,7 +64,7 @@ const UpdateCategory = ({ match }) => {
     return (
       <form>
         <div className='form-group'>
-          <p className='lead'>Update the category</p>
+          <p className='lead'>Update the category : {name}</p>
           <input
             type='text'
             className='form-control my-3'
@@ -84,11 +84,11 @@ const UpdateCategory = ({ match }) => {
   return (
     <Base
       title='Create a Category'
-      description='Add a new category for new t-shirts'
-      className='container bg-info p-4'
+      description=''
+      className='container  p-4'
     >
-      <div className='row bg-white rounded'>
-        <div className='col-md-8 offset-md-2'>
+      <div className='row pt-2'>
+        <div className='col-md-8 offset-md-2 bg-white rounded p-2'>
           {successMessage()}
           {errorMessage()}
           {updateCategoryForm()}

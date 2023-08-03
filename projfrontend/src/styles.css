@@ -1,15 +1,32 @@
-.btn,
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@700&family=Poppins:wght@200;300;400;500&display=swap');.btn,
 .jumbotron,
 .nav :hover {
   border-radius: 0px;
 }
 body,
 .bg-dark {
-  background: #343a40 !important;
+  background: #091d2c  !important;
+  font-family: 'Poppins', sans-serif;
+  /* background: url("./core/SignBg.png") ;
+  background-size: inherit; */
 }
-/* footer {
-  position: relative;
-  bottom: 0;
-  right: 0;
-  left: 0;
-} */
+
+.heading{
+  font-family: 'Edu SA Beginner', cursive;
+  font-size: 1.8rem;
+  background: -webkit-linear-gradient(#37BA30, #076BDF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+footer{
+  font-size: 0.8rem;
+}
+a{
+  color: #6C757D;
+}
+
+/* ADMIN DASHBOARD */
+.bg-admin{
+  background-color: #6C757D;
+}
+

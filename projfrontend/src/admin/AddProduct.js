@@ -155,7 +155,7 @@ const AddProduct = () => {
           className='form-control'
           placeholder='Category'
         >
-          <option>Select</option>
+          <option>Select Category</option>
           {categories &&
             categories.map((cate, index) => (
               <option key='index' value={cate._id}>
@@ -169,7 +169,7 @@ const AddProduct = () => {
           onChange={handleChange("stock")}
           type='number'
           className='form-control'
-          placeholder='Quantity'
+          placeholder='Quantity/Stock'
           value={stock}
         />
       </div>
@@ -188,12 +188,12 @@ const AddProduct = () => {
     <Base
       title='Add a Product here!'
       description='Welcome to product creation section'
-      className='container bg-info p-4'
+      className='container  p-4'
     >
-      <Link to='/admin/dashboard' className='btn btn-md btn-dark mb-3'>
+      <Link to='/admin/dashboard' className='btn btn-md btn-success mb-3'>
         Admin Home
       </Link>
-      <div className='row bg-dark text-white rounded'>
+      <div className='row bg-light text-dark rounded'>
         <div className='col-md-8 offset-md-2'>
           {errorMessage()}
           {succesMessage()}

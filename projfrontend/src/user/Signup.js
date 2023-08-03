@@ -8,10 +8,12 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    cfpassword: "",
+    contact_no: "",
     error: "",
     success: false
   });
-  const { name, email, password, error, success } = values;
+  const { name, email, password, cfpassword, contact_no, error, success } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -20,8 +22,15 @@ const Signup = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
+    if( name == "" || email == "" || contact_no == "" || password == ""){
+      return setValues({...values, error: "Please fill all the details"})
 
-    signup({ name, email, password })
+    }
+
+    if(password !== cfpassword){
+      return setValues({...values, error: "Password and Confirm Password should match"})
+    }
+    signup({ name, email, contact_no, password })
       .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error.msg, success: false });
@@ -32,6 +41,8 @@ const Signup = () => {
             email: "",
             password: "",
             error: "",
+            cfpassword: "",
+            contact_no: "",
             success: true
           });
         }
@@ -51,7 +62,7 @@ const Signup = () => {
                 type='text'
                 value={name}
               />
-            </div>
+            </div><br/>
             <div className='form-group'>
               <label className='text-light'>Email:</label>
               <input
@@ -60,7 +71,16 @@ const Signup = () => {
                 type='email'
                 value={email}
               />
-            </div>
+            </div><br/>
+            <div className='form-group'>
+              <label className='text-light'>Contact Number:</label>
+              <input
+                className='form-control'
+                onChange={handleChange("contact_no")}
+                type='number'
+                value={contact_no}
+              />
+            </div><br/>
             <div className='form-group'>
               <label className='text-light'>Password:</label>
               <input
@@ -68,6 +88,16 @@ const Signup = () => {
                 onChange={handleChange("password")}
                 type='password'
                 value={password}
+              />
+            </div>
+            <br />
+            <div className='form-group'>
+              <label className='text-light'>Confirm Password:</label>
+              <input
+                className='form-control'
+                onChange={handleChange("cfpassword")}
+                type='password'
+                value={cfpassword}
               />
             </div>
             <br />
@@ -111,11 +141,10 @@ const Signup = () => {
     );
   };
   return (
-    <Base title='Sign up page' description='A page for user to sign up!'>
+    <Base title='' description='Register yourself to start shopping!'>
       {successMessage()}
       {errorMessage()}
       {signUpForm()}
-      <p className='text-white text-center'>{JSON.stringify(values)}</p>
     </Base>
   );
 };

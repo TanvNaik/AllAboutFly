@@ -33,20 +33,20 @@ const ManageProducts = () => {
 
   return (
     <Base title='Welcome admin' description='Manage products here'>
-      <Link className='btn btn-info' to={`/admin/dashboard`}>
+      <Link className='btn btn-success' to={`/admin/dashboard`}>
         <span className=''>Admin Home</span>
       </Link>
       <h2 className='mb-4'>All products:</h2>
 
-      <div className='row'>
+      <div className='row bg-light rounded text-dark'>
         <div className='col-12'>
-          <h2 className='text-center text-white my-3'>Total 3 products</h2>
-
+          <h2 className='text-center my-3'>Total {products.length} products</h2>
+<hr/>
           {products.map((product, index) => {
             return (
               <div key={index} className='row text-center mb-2 '>
                 <div className='col-4'>
-                  <h3 className='text-white text-left'>{product.name}</h3>
+                  <h3 className=' text-left'>{product.name}</h3>
                 </div>
                 <div className='col-4'>
                   <Link
@@ -65,7 +65,7 @@ const ManageProducts = () => {
                   >
                     Delete
                   </button>
-                </div>
+                </div><hr/>
               </div>
             );
           })}

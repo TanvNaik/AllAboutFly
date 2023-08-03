@@ -61,7 +61,7 @@ const AddCategory = () => {
             required
             placeholder='For Ex. Summer'
           />
-          <button onClick={onSubmit} className='btn btn-outline-info '>
+          <button onClick={onSubmit} className='btn btn-success  '>
             Create category
           </button>
         </div>
@@ -70,12 +70,12 @@ const AddCategory = () => {
   };
   return (
     <Base
-      title='Create a Category'
-      description='Add a new category for new t-shirts'
-      className='container bg-info p-4'
+      title='Create a new Category'
+      description=''
+      className='container  p-4'
     >
-      <div className='row bg-white rounded'>
-        <div className='col-md-8 offset-md-2'>
+      <div className='row   pt-2'>
+        <div className='col-md-8 offset-md-2 bg-white rounded p-2 '>
           {succesMessage()}
           {errorMessage()}
           {addCategoryForm()}
