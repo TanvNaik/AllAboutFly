@@ -11,3 +11,4 @@ export const getAllProducts = () => {
       console.log(err);
     });
 };
+

@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@700&family=Poppins:wght@200;300;400;500&display=swap');.btn,
+/* @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@700&family=Poppins:wght@200;300;400;500&display=swap');.btn,
 .jumbotron,
 .nav :hover {
   border-radius: 0px;
-}
-body,
+} */
+/* body,
 .bg-dark {
-  background: #091d2c  !important;
-  font-family: 'Poppins', sans-serif;
+  /* background: #091d2c  !important; */
+  /* font-family: 'Poppins', sans-serif; */
   /* background: url("./core/SignBg.png") ;
-  background-size: inherit; */
-}
+  background-size: inherit; 
+} 
 
-.heading{
+/* .heading{
   font-family: 'Edu SA Beginner', cursive;
   font-size: 1.8rem;
   background: -webkit-linear-gradient(#37BA30, #076BDF);
@@ -23,10 +23,147 @@ footer{
 }
 a{
   color: #6C757D;
-}
+} */
 
-/* ADMIN DASHBOARD */
+/* ADMIN DASHBOARD
 .bg-admin{
   background-color: #6C757D;
+} */
+
+:root {
+  --navy: #162E44;
+  --navy-hover: #304559;
+  --cyan: #01b3a7;
+}
+.btn-success{
+  background-color: var(--navy);
+}
+.btn-outline-success{
+  border: 1px solid var(--navy);
+  color: var(--navy);
+}
+.btn-outline-success:hover{
+  background-color: var(--navy-hover);
 }
 
+body{
+  background-color: #ffffff !important;
+}
+a{
+  text-decoration: none;
+}
+.main-nav{
+  background-color: var(--navy) !important;
+}
+.main-nav a{
+  color: #ffffff !important;
+}
+.main-nav li :hover{
+  background-color: var(--navy-hover);
+}
+
+.navbar-nav > li{
+  margin-left:30px;
+  margin-right:30px;
+}
+/* Home */
+.tabs-custom {
+	text-align: left;
+}
+figcaption{
+  text-transform: capitalize;
+}
+.card{
+  border: none;
+}
+/* 
+.tabs-custom .nav-tabs {
+	font-size: 0;
+	line-height: 0;
+	word-spacing: 0;
+	border: 0;
+	justify-content: center;
+} */
+
+.tabs-custom .nav-tabs:before, .tabs-custom .nav-tabs:after {
+	display: none;
+}
+
+.tabs-custom .nav-item {
+	float: none;
+  padding: 0.8%;
+  /* background-color: var(--navy-hover); */
+  
+
+}
+.tabs-custom .nav-item :hover{
+  /* background-color: var(--navy); */
+  border-bottom: 2px solid var(--cyan);
+}
+
+.tabs-custom .nav-link {
+	margin: 0;
+	border-radius: 0;
+	border: 0;
+  text-transform: capitalize;
+  color: var(--navy);
+
+}
+.tabs-custom .nav-link :hover{
+  background-color: var(--navy-hover);
+}
+.tabs-custom .nav-link.active {
+	color: var(--cyan);
+}
+
+.tabs-line .nav-link {
+	padding: 10px 10px 6px;
+	font-size: 1.2rem;
+	font-weight: 400;
+	line-height: 1;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.tabs-line .nav-link-big {
+	font-size: 24px;
+}
+
+.tabs-line .nav-link-small {
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: .025em;
+}
+
+
+
+/* FOOTER */
+.footer-bottom-panel , .footer-bottom-panel a {
+  background-color: #11263A;
+  color: #ffffff;
+
+}
+.footer-top-panel {
+  background-color: var(--navy);
+  color: #ffffff;
+  padding-top: 1%;
+}
+
+
+footer .icon{
+  color: var(--cyan);
+}
+footer a{
+  color: #ffffff;
+}
+.btn-cyan{
+  background-color: var(--cyan);
+  color: var(--navy);
+}
+.btn-cyan:hover{
+  background-color: var(--navy-hover);
+  color: var(--cyan);
+}
+.text-cyan{
+  color: var(--cyan);
+}

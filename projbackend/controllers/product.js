@@ -145,14 +145,16 @@ exports.getAllProducts = (req, res) => {
     });
 };
 
-exports.getAllUniqueCategories = (req, res) => {
-  Product.distinct("category", {}, (err, categories) => {
+exports.getProductsbyCategory = (req, res) => {
+  Product.find({"category": req.params.categoryId}).populate("category")
+  .sort([[sortBy, "asc"]])
+  .exec((err, products) => {
     if (err) {
       return res.status(400).json({
-        error: "No category found"
+        error: "No product found"
       });
     }
-    res.json(categories);
+    res.json(products);
   });
 };
 

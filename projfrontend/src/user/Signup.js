@@ -19,6 +19,7 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
+  
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
@@ -51,11 +52,11 @@ const Signup = () => {
   };
   const signUpForm = () => {
     return (
-      <div className='row'>
-        <div className='col-md-6 offset-sm-3 text-left'>
+      <div className='row align-items-center' style={{minHeight: "100vh"}}>
+        <div className='col-md-6 offset-sm-3 text-left pt-4 mt-3'>
           <form>
             <div className='form-group'>
-              <label className='text-light'>Name:</label>
+              <label className=''>Name:</label>
               <input
                 className='form-control'
                 onChange={handleChange("name")}
@@ -64,7 +65,7 @@ const Signup = () => {
               />
             </div><br/>
             <div className='form-group'>
-              <label className='text-light'>Email:</label>
+              <label className=''>Email:</label>
               <input
                 className='form-control'
                 onChange={handleChange("email")}
@@ -73,7 +74,7 @@ const Signup = () => {
               />
             </div><br/>
             <div className='form-group'>
-              <label className='text-light'>Contact Number:</label>
+              <label className=''>Contact Number:</label>
               <input
                 className='form-control'
                 onChange={handleChange("contact_no")}
@@ -82,7 +83,7 @@ const Signup = () => {
               />
             </div><br/>
             <div className='form-group'>
-              <label className='text-light'>Password:</label>
+              <label className=''>Password:</label>
               <input
                 className='form-control'
                 onChange={handleChange("password")}
@@ -92,7 +93,7 @@ const Signup = () => {
             </div>
             <br />
             <div className='form-group'>
-              <label className='text-light'>Confirm Password:</label>
+              <label className=''>Confirm Password:</label>
               <input
                 className='form-control'
                 onChange={handleChange("cfpassword")}
@@ -101,9 +102,12 @@ const Signup = () => {
               />
             </div>
             <br />
-            <button onClick={onSubmit} className='btn btn-success w-100'>
-              Submit
+            <div className="w-100 text-center">
+            <button onClick={onSubmit} className='btn btn-success w-50'>
+              Create account
             </button>
+            </div>
+            
           </form>
         </div>
       </div>
@@ -112,15 +116,11 @@ const Signup = () => {
 
   const successMessage = () => {
     return (
-      <div className='row'>
+      <div className='row '>
         <div className='col-md-6 offset-sm-3 text-left'>
-          <div
-            className='alert alert-success'
-            style={{ display: success ? "" : "none" }}
-          >
-            New account was created successfully. Please
-            <Link to='/signin'>Login Here</Link>
-          </div>
+          {success && (
+           alert("Account created successfully.</Link>")
+          )}
         </div>
       </div>
     );
@@ -130,19 +130,18 @@ const Signup = () => {
     return (
       <div className='row'>
         <div className='col-md-6 offset-sm-3 text-left'>
-          <div
-            className='alert alert-danger'
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
+          
+            {success && (
+           alert(error)
+          )}
         </div>
       </div>
     );
   };
   return (
     <Base title='' description='Register yourself to start shopping!'>
-      {successMessage()}
+            {successMessage()}
+
       {errorMessage()}
       {signUpForm()}
     </Base>

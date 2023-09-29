@@ -18,7 +18,7 @@ var userSchema = new mongoose.Schema(
     },
     contact_no: {
       type: Number
-    },
+    },  
     encry_password: {
       type: String,
       required: true

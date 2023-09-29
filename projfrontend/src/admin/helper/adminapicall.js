@@ -36,6 +36,8 @@ export const getCategory = (categoryId) => {
       console.log(err);
     });
 };
+
+
 // delete a category
 export const deleteCategory = (categoryId, userId, token) => {
   return fetch(`${API}/category/${categoryId}/${userId}`, {
@@ -94,6 +96,15 @@ export const getAllProducts = () => {
     .then((res) => res.json())
     .catch((err) => console.log(err));
 };
+
+// get products by category
+export const getProductsbyCategory = (categoryId) =>{
+  return fetch(`${API}/products/${categoryId}`, {
+    method: "GET"
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+} 
 
 // get a product
 export const getProduct = (productId) => {

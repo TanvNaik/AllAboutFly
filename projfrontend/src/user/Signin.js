@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/helper/index";
 
 const Signin = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "abcd@gmail.com",
     password: "1234",
@@ -42,13 +43,13 @@ const Signin = () => {
   const performRedirect = () => {
     if (didRedirect) {
       if (user && user.role === 1) {
-        return <Redirect to='/admin/dashboard' />;
+        return navigate('/admin/dashboard') 
       } else {
-        return <Redirect to='/user/dashboard' />;
+        return navigate('/user/dashboard') 
       }
     }
     if (isAuthenticated()) {
-      return <Redirect to='/'></Redirect>;
+      return navigate('/') 
     }
   };
   const loadingMessage = () => {
@@ -76,11 +77,11 @@ const Signin = () => {
   };
   const signInForm = () => {
     return (
-      <div className='row'>
+      <div className='row align-items-center'  style={{minHeight: "70vh"}}>
         <div className='col-md-6 offset-sm-3 text-left'>
           <form>
             <div className='form-group'>
-              <label className='text-light'>Email:</label>
+              <label className=''>Email:</label>
               <input
                 className='form-control'
                 value={email}
@@ -89,7 +90,7 @@ const Signin = () => {
               />
             </div><br/>
             <div className='form-group'>
-              <label className='text-light'>Password:</label>
+              <label className=''>Password:</label>
               <input
                 className='form-control'
                 value={password}

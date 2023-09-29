@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Base from "../core/Base";
 import { createProduct, getAllCategories } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper";
 const AddProduct = () => {
   const { user, token } = isAuthenticated();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -77,7 +77,7 @@ const AddProduct = () => {
   const getaRedirect = () => {
     if (loading === false && getRedirect === true) {
       setTimeout(() => {
-        history.push("/");
+        navigate("/");
       }, 2000);
     }
   };
