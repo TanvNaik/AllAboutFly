@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Base from "../core/Base";
 import StripeCheckoutButton from "react-stripe-checkout";
+import PaymentButton from "./PaymentButton";
+import { isAuthenticated } from "../auth/helper";
+import { createOrder } from "./helper/orderapicalls";
 
 export default function Checkout() {
   const [values, setValues] = useState({
@@ -13,9 +16,27 @@ export default function Checkout() {
     amount: JSON.parse(localStorage.getItem("price")),
     success: false,
   });
-  const [products, setProducts] = useState(
-    JSON.parse(localStorage.getItem("products")).products
-  );
+  const [products, setProducts] = useState(JSON.parse(localStorage.getItem("products")).products);
+
+  const [productIds, setProductids] = useState([])
+  useEffect(()=>{
+    
+
+    let prods = products.map((prod) => 
+    {
+      return {
+      _id : prod._id,
+      stock: prod.stock,
+      count: prod.count
+    }
+  })
+    setProductids([...prods])
+
+    localStorage.removeItem("orderDetails")
+
+
+
+  }, [])
   const {
     billingName,
     email,
@@ -26,30 +47,52 @@ export default function Checkout() {
     error,
     success,
   } = values;
+  const [details, setDetails] = useState()
 
+  const {user, token} = isAuthenticated();
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
+    //add productCart id
+    let details = {
+      billingName: billingName,
+      amount: amount,
+      address: address,
+      email:email,
+      user: user._id,
+      products: productIds,
+      productCart: JSON.parse(localStorage.getItem("ProductCartId")),
+      contact_no: contact_no
+    };
+    setDetails(details)
+    // localStorage.setItem("orderDetails", JSON.stringify(details));
+    if(
+      billingName &&
+      address &&
+      email &&
+      contact_no 
+      ){
+        document.getElementById("toggle").style.display = "block"; 
+      }
   };
 
-  //   const showStripeButton = () => {
-  //     return (
-  //         <StripeCheckoutButton
-  //             stripeKey= {process.env.REACT_APP_STRIPE_KEY}
-  //             token={makePayment}
-  //             amount= {fare * 100}
-  //             name='Pay for Ride'
-  //         >
-  //             <button className='btn-submit'>Pay with stripe</button>
-  //         </StripeCheckoutButton>)
-
-  // }
+  const createOrderCOD = () => {
+    createOrder(user._id, {order: details}, token).then(data => {
+      if(data.error){
+        return alert(data.error)
+      }
+      return alert("Order placed successfully!")
+    })
+  }
+  
   const checkout = () => {
     return (
       // <!--================Checkout Area =================-->
+
       <section className="checkout_area section_gap">
-        <div className="container">
-          <div className="billing_details">
-            <div className="row">
+
+        <div className="container ">
+          <div className="billing_details ">
+            <div className="row ">
               <div className="col-lg-6">
                 <h3>Billing Details</h3>
                 <form
@@ -111,10 +154,10 @@ export default function Checkout() {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-6">
-                <div className="order_box">
+              <div className="col-lg-6 ">
+                <div className="order_box ">
                   <h2>Your Order</h2>
-                  <table class="table table-dark ">
+                  <table className="table table-secondary ">
                     <thead>
                       <tr>
                         <th scope="col">Product</th>
@@ -126,30 +169,33 @@ export default function Checkout() {
                       {products.map((prod, key) => {
                         return (
                           <tr key={key}>
-                            <td>{prod.productId.name} </td>
+                            <td>{prod.name} </td>
                             <td>{prod.count}</td>
-                            <td>${prod.productId.price * prod.count}</td>
+                            <td>${prod.price * prod.count}</td>
                           </tr>
                         );
                       })}
                       <tr className="text-center">
                         <td>Total </td>
+                        <td></td>
                         <td>${amount}</td>
                       </tr>
                     </tbody>
                   </table>
+                  <div id="toggle" style={{display: "none"}}>
+                  <div>
+                    Only COD available
+            <button className="primary-btn rounded"onClick={createOrderCOD}>PLace Order</button>
+        </div>
+        {/* TODO: Payment */}
+                  {/* <PaymentButton/> */}
 
-                  
-                  
-                  
-                  <div className="creat_account">
-                    <input type="checkbox" id="f-option4" name="selector" />
-                    <label for="f-option4">I’ve read and accept the </label>
-                    <a href="#">terms & conditions*</a>
                   </div>
-                  <a className="primary-btn" href="#">
-                    Proceed to Paypal
-                  </a>
+                  
+                  
+                  
+                  
+                    
                 </div>
               </div>
             </div>

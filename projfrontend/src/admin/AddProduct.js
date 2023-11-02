@@ -55,6 +55,7 @@ const AddProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(formData)
     setValues({ ...values, error: "", loading: true });
     createProduct(user._id, token, formData).then((data) => {
       if (data.error) {
@@ -103,7 +104,6 @@ const AddProduct = () => {
   };
   const handleChange = (name) => (event) => {
     let value = name === "photo" ? event.target.files[0] : event.target.value;
-    console.log(formData);
     formData.set(name, value);
     setValues({ ...values, [name]: value });
   };
@@ -117,6 +117,7 @@ const AddProduct = () => {
             onChange={handleChange("photo")}
             type='file'
             name='photo'
+            id="photo"
             accept='image'
             placeholder='choose a file'
           />
@@ -158,7 +159,7 @@ const AddProduct = () => {
           <option>Select Category</option>
           {categories &&
             categories.map((cate, index) => (
-              <option key='index' value={cate._id}>
+              <option key={index} value={cate._id}>
                 {cate.name}
               </option>
             ))}
@@ -186,15 +187,30 @@ const AddProduct = () => {
 
   return (
     <Base
-      title='Add a Product here!'
-      description='Welcome to product creation section'
-      className='container  p-4'
-    >
+      
+    >{/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Add Product</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Admin Dashboard<span className="lnr lnr-arrow-right"></span></a><a href="single-product.html">Add Products</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
+ 
       <Link to='/admin/dashboard' className='btn btn-md btn-success mb-3'>
         Admin Home
       </Link>
-      <div className='row bg-light text-dark rounded'>
-        <div className='col-md-8 offset-md-2'>
+      <div className='row bg-light text-dark rounded mb-2' >
+        <div className='col-md-8 offset-md-2 rounded' style={{border: "1px solid grey"}}>
           {errorMessage()}
           {succesMessage()}
           {getaRedirect()}

@@ -29,7 +29,8 @@ a{
 .bg-admin{
   background-color: #6C757D;
 } */
-
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,500&display=swap');
 :root {
   --navy: #162E44;
   --navy-hover: #304559;
@@ -75,6 +76,13 @@ figcaption{
 }
 .card{
   border: none;
+}
+.banner-txt{
+  font-family: 'Mulish', sans-serif;
+}
+.slogan{
+  font-family: 'Mulish', sans-serif;
+  font-style: italic;
 }
 /* 
 .tabs-custom .nav-tabs {

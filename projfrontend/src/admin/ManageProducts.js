@@ -32,43 +32,65 @@ const ManageProducts = () => {
   };
 
   return (
-    <Base title='Welcome admin' description='Manage products here'>
+    <Base >
+       {/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Manage Categories</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Dashboard<span className="lnr lnr-arrow-right"></span> </a>
+              <a href="single-product.html">Manage Products </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
       <Link className='btn btn-success' to={`/admin/dashboard`}>
         <span className=''>Admin Home</span>
       </Link>
-      <h2 className='mb-4'>All products:</h2>
 
-      <div className='row bg-light rounded text-dark'>
-        <div className='col-12'>
-          <h2 className='text-center my-3'>Total {products.length} products</h2>
+      <div className='row bg-light rounded w-100 text-dark justify-content-center '>
+        <div className='col-8'>
+        
 <hr/>
-          {products.map((product, index) => {
+<table class="table table-secondary m-3  ">
+                    <thead>
+                      <tr>
+                        <th scope="col">Category name</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          {products.map((product, key) => {
             return (
-              <div key={index} className='row text-center mb-2 '>
-                <div className='col-4'>
-                  <h3 className=' text-left'>{product.name}</h3>
-                </div>
-                <div className='col-4'>
-                  <Link
-                    className='btn btn-success'
-                    to={`/admin/product/update/${product._id}`}
-                  >
-                    <span className=''>Update</span>
-                  </Link>
-                </div>
-                <div className='col-4'>
-                  <button
-                    onClick={() => {
-                      deleteaProduct(product._id);
-                    }}
-                    className='btn btn-danger'
-                  >
-                    Delete
-                  </button>
-                </div><hr/>
-              </div>
+              <tr key={key}>
+                            <td>{product.name} </td>
+                            <td><Link
+                            className='btn btn-success'
+                            to={`/admin/product/update/${product._id}`}
+                          >
+                            <span className=''>Update</span>
+                          </Link></td>
+                            <td><button
+                            onClick={() => {
+                              deleteaProduct(product._id);
+                            }}
+                            className='btn btn-danger'
+                          >
+                            Delete
+                          </button></td>
+                          </tr>
             );
           })}
+           </tbody>
+                      </table>
         </div>
       </div>
     </Base>

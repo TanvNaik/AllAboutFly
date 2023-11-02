@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path")
+
 
 const {
   getProductById,
   createProduct,
   getProduct,
-  photo,
   updateProduct,
   deleteProduct,
   getAllProducts,
@@ -18,6 +20,17 @@ const {
 } = require("../controllers/authentication");
 const { getUserById } = require("../controllers/user");
 
+const fileStorageEngine = multer.diskStorage({
+  destination: (req,file,cb) =>{
+      cb(null,path.join(__dirname, "../uploads/images"))  
+  },
+  filename: (req,file,cb) =>{
+      cb(null, Date.now() + "--" + file.originalname)
+  }
+})
+const upload = multer({storage: fileStorageEngine})
+
+
 // Params
 router.param("productId", getProductById);
 router.param("userId", getUserById);
@@ -27,6 +40,9 @@ router.param("userId", getUserById);
 //create route
 router.post(
   "/product/create/:userId",
+  upload.fields([{
+    name: 'photo', maxCount: 1
+  }]),
   isSignedIn,
   isAuthenticated,
   isAdmin,
@@ -35,7 +51,6 @@ router.post(
 
 //read routes
 router.get("/product/:productId", getProduct);
-router.get("/product/photo/:productId", photo);
 router.get("/products/:categoryId", getProductsbyCategory)
 
 //delete route

@@ -51,61 +51,99 @@ const Home = () => {
   return (
     <Base title="" description="">
 
-	{/* <!-- start banner Area --> */}
-	<section className="banner-area">
-		<div className="container">
-			<div className="row fullscreen align-items-center justify-content-start">
-				<div className="col-lg-12">
-					<div className="active-banner-slider owl-carousel">
-						{/* <!-- single-slide --> */}
-						<div className="row single-slide align-items-center d-flex">
-							<div className="col-lg-5 col-md-6">
-								<div className="banner-content">
-									<h1>Nike New <br/>Collection!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-									<div className="add-bag d-flex align-items-center">
-										<a className="add-btn" href=""><span className="lnr lnr-cross"></span></a>
-										<span className="add-text text-uppercase">Add to Bag</span>
+
+	{/* <!-- Start Banner Area --> */}
+	<section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1 className="banner-txt">All About Fly</h1>
+            <nav className="d-flex align-items-center">
+                <a href="" className="slogan"> 			  
+				Your Dreams, Our Drones
+				 </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
+	
+    {/* <!-- Start category Area --> */}
+	<section class="category-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-12">
+					<div class="row">
+						<div class="col-lg-8 col-md-8">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluid w-100" src="../site-images/img0.jpg" alt=""/>
+								<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										
 									</div>
-								</div>
-							</div>
-							<div className="col-lg-7">
-								<div className="banner-img">
-									<img className="img-fluid" src="img/banner/banner-img.png" alt=""/>
-								</div>
+								</a>
 							</div>
 						</div>
-						{/* <!-- single-slide --> */}
-						<div className="row single-slide">
-							<div className="col-lg-5">
-								<div className="banner-content">
-									<h1>Nike New <br/>Collection!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-									<div className="add-bag d-flex align-items-center">
-										<a className="add-btn" href=""><span className="lnr lnr-cross"></span></a>
-										<span className="add-text text-uppercase">Add to Bag</span>
+						<div class="col-lg-4 col-md-4">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluid w-100" src="../site-images/img1.jpg" alt=""/>
+								<a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Sneaker for Sports</h6>
 									</div>
-								</div>
-							</div>
-							<div className="col-lg-7">
-								<div className="banner-img">
-									<img className="img-fluid" src="img/banner/banner-img.png" alt=""/>
-								</div>
+								</a>
 							</div>
 						</div>
+						<div class="col-lg-4 col-md-4">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluid w-100" src="../site-images/img5.jpg" alt=""/>
+								<a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Product for Couple</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-8">
+							<div class="single-deal">
+								<div class="overlay"></div>
+								<img class="img-fluid w-100" src="../site-images/img2.jpg" alt=""/>
+								<a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
+									<div class="deal-details">
+										<h6 class="deal-title">Sneaker for Sports</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-deal">
+						<div class="overlay"></div>
+            <img class="img-fluid w-100" src="../site-images/img3.jpg" alt=""/>
+						<a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
+							<div class="deal-details">
+								<h6 class="deal-title">Sneaker for Sports</h6>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	{/* <!-- End banner Area --> */}
-
-	
-	
-	{/* <!-- end features Area --> */}
-
+	{/* <!-- End category Area --> */}
+  <ul class="instafeed d-flex flex-wrap">
+							<li><img src="../images/img0.jpg" alt=""/></li>
+							<li><img src="../images/img1.jpg" alt=""/></li>
+							<li><img src="../images/img2.jpg" alt=""/></li>
+							<li><img src="../images/img3.jpg" alt=""/></li>
+							<li><img src="../images/img5.jpg" alt=""/></li>
+							
+						</ul>
 
 	{/* <!-- start product Area --> */}
 	<section className=" ">
@@ -135,7 +173,9 @@ const Home = () => {
 					</div>
 				</div>
 				<div className="row">
-					{console.log(products)}
+					{products.length === 0 && (
+						<span className=" m-3 text-center"><i>No products to show</i></span>
+					)}
 					{/* <!-- single product --> */}
 					{products.length !== 0 &&
               products.map((product, index) => {

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ImageHelper from "./helper/ImageHelper";
 import { useNavigate } from "react-router-dom";
-import { addItemToCart, removeItemfromCart } from "../user/helper/userapicalls";
+// import { addItemToCart, removeItemfromCart } from "../user/helper/userapicalls";
+
 import { isAuthenticated } from "../auth/helper";
+import { addItemToCart } from "./helper/cartHelper";
+import { removeItemfromCart } from "../user/helper/userapicalls";
 
 
 const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
@@ -25,8 +28,9 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
   }
 
   const addToCart = () => {
-    addItemToCart(user._id,product._id, product.price)
-    return navigate("/cart")
+    // addItemToCart(user._id,product._id, product.price)
+    addItemToCart(product, () => navigate("/cart"));
+
   };
 
   const removefromCart = () => {
@@ -63,7 +67,14 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
   };
   return (
 						<div className="single-product">
-           <ImageHelper  className="img-fluid" product={product}></ImageHelper>{" "}
+           {console.log(product)}
+           {product.photo && (
+                        <img
+                          width={"300px"}
+                          height={"300px"}
+                          src={`http://localhost:8000/image/${product.photo}`}
+                        />
+                      )}
 							<div className="product-details">
 								<h6>{product.name}</h6>
 								<div className="price">

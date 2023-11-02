@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticated, signout } from "../auth/helper/index";
-//TODO: change image srcs
-import logo from "./logo.svg";
 const currentTab = (pathname, path) => {
   if (pathname === path) {
     return { color: "#507C9" };
@@ -16,10 +14,10 @@ const Nav = (props) => {
     <nav className="navbar navbar-expand-lg navbar-light main_box ">
       <div className="container">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
-        <a className="navbar-brand logo_h" href="index.html">
+        <Link className="navbar-brand logo_h" to={"/"} >
           <img src="./favicon-32x32.png" alt="" />
-          <img width="50%" src="./webname.svg" alt="" />
-        </a>
+          <img width="50%" src="../images/webname.svg" alt="" />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -124,9 +122,13 @@ const Nav = (props) => {
               </li>
             )}
             <li className="nav-item">
-              <a className="nav-link" href="#contactus">
-                Contact Us
-              </a>
+            <Link
+                  style={currentTab(window.location.pathname, "/cart")}
+                  className="nav-link "
+                  to="/contact-us"
+                >
+                  Contact Us
+                </Link>
             </li>
           </ul>
         </div>
@@ -135,7 +137,7 @@ const Nav = (props) => {
   );
 };
 export default Nav;
-// (
+
 //   <div className="d-flex justify-content-between nav nav-tabs">
 //     <div className=" w-50 text-white d-flex align-items-center">
 //     <Link

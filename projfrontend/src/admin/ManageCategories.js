@@ -33,46 +33,68 @@ const ManageCategories = () => {
   }, []);
 
   return (
-    <Base title='Welcome admin' description='Manage categories here'>
+    <Base >
+    {/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Manage Categories</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Dashboard<span className="lnr lnr-arrow-right"></span> </a>
+              <a href="single-product.html"> Manage Categories </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
       <Link className='btn btn-success' to={`/admin/dashboard`}>
         <span className=''>Admin Home</span>
       </Link>
-      <h2 className='mb-4'>All Categories:</h2>
 
-      <div className='row bg-light rounded text-dark'>
-        <div className='col-12'>
-          <h2 className='text-center  my-3' >
-            Total {categories.length} categories
-          </h2><hr/>
-          {categories.map((category, index) => {
-            return (
-              <div key={index} className='row text-center mb-2  '>
-                <div className='col-4 rounded'>
-                  <h3 className='text-left'>{category.name}</h3>
-                </div>
-                <div className='col-4'>
-                  <Link
+      <div className='row bg-light rounded w-100 text-dark justify-content-center'>
+        <div className='col-8  '>
+          
+          <table class="table table-secondary m-3  ">
+                    <thead>
+                      <tr>
+                        <th scope="col">Category name</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {categories.map((category, key) => {
+                        return (
+                          <tr key={key}>
+                            <td>{category.name} </td>
+                            <td><Link
                     className='btn btn-success'
                     to={`/admin/category/update/${category._id}`}
                   >
                     <span className=''>Update</span>
-                  </Link>
-                </div>
-                <div className='col-4'>
-                  <button
+                  </Link></td>
+                            <td><button
                     onClick={() => {
                       deleteaCategory(category._id);
                     }}
                     className='btn btn-danger'
                   >
                     Delete
-                  </button>
-                </div>
+                  </button></td>
+                          </tr>
+                        );
+                      })}
+                      </tbody>
+                      </table>
                 <hr/>
               </div>
-            );
-          })}
-        </div>
+            
+          
       </div>
     </Base>
   );

@@ -27,10 +27,6 @@ var userSchema = new mongoose.Schema(
     role: {
       type: Number, //higher the number, more the privileges
       default: 0
-    },
-    purchases: {
-      type: Array,
-      default: []
     }
   },
   { timestamps: true }

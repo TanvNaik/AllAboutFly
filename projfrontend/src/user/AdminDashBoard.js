@@ -13,19 +13,19 @@ const AdminDashBoard = () => {
         <h4 className='card-header bg-dark text-white'> Admin Navigation </h4>
         <ul className='list-group'>
           <li className='list-group-item'>
-            <Link to='/admin/create/category' className='nav-link text-success'>
+            <Link to='/admin/create/category' className='nav-link text-info'>
               Create Category
             </Link>
-            <Link to='/admin/categories' className='nav-link text-success'>
+            <Link to='/admin/categories' className='nav-link text-info'>
               Manage Categories
             </Link>
-            <Link to='/admin/create/product' className='nav-link text-success'>
+            <Link to='/admin/create/product' className='nav-link text-info'>
               Create Products
             </Link>
-            <Link to='/admin/products' className='nav-link text-success'>
+            <Link to='/admin/products' className='nav-link text-info'>
               Manage Products
             </Link>
-            <Link to='/admin/orders' className='nav-link text-success'>
+            <Link to='/admin/orders' className='nav-link text-info'>
               Manage Orders
             </Link>
           </li>
@@ -67,11 +67,25 @@ const AdminDashBoard = () => {
   };
   return (
     <Base
-      title='Welcome to Admin area'
-      description='Manage all your products here'
-      className='container  p-4 '
-    >
-      <div className='row'>
+      
+    >  {/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Admin Dashboard</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Dashboard</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
+      <div className='row mb-3'>
         <div className='col-3'>{adminLeftSide()}</div>
         <div className='col-9'>{adminRightSide()}</div>
       </div>

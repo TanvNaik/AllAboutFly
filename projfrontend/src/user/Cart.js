@@ -3,33 +3,50 @@ import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { cartUpdate, getUserCart } from "./helper/userapicalls";
 import { Link,  useNavigate } from "react-router-dom";
+import { loadCart } from "../core/helper/cartHelper";
 
 const Cart = () => {
   const { user } = isAuthenticated();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
 const navigate = useNavigate();
-  const [cartId, setCartId] = useState("")
   const [price, setPrice] = useState(0);
   const [error, setError] = useState("");
 
   // Load Cart Products
   const preload = () => {
-    getUserCart(user._id).then((data) => {
-      if (data.error) {
-        return setError(data.error);
-      }
-      setProducts(data.cart);
-      setPrice(data.price);
-      setCartId(data._id)
-      
-    });
+  const prods = loadCart()
+
+  let sum = 0;
+  prods.map((prod) => {
+    sum += (prod.count * prod.price);
+  }) 
+  setPrice(sum)
+    // setPrice(prods.map((res, prod) =>  {
+    //   console.log(res.price)
+    //   return res.price + (prod.count * prod.price)}))
+    setProducts(prods);
+  
+
+ 
+    
+
+    // getUserCart(user._id).then((data) => {
+    //   if (data.error) {
+    //     return setError(data.error);
+    //   }
+    //   setProducts(data.cart);
+    //   setPrice(data.price);
+    //   setCartId(data._id)
+    // });
   };
   // Remove product from cart
   // Proceed to Place Order
 
   useEffect(() => {
-    preload();
+    preload();  
     
+   
+
   }, []);
 
   const handleChange = (id) => (event) => {
@@ -59,16 +76,16 @@ const navigate = useNavigate();
     });
     console.log(products);
 
-    setPrice(price); 
-    cartUpdate(cartId, {newProducts: newCart}, price )
-    .then(data => {
-      if (data.error){
-        return setError(data.error)
-      }
-      alert("Successfully Updated the cart");
+    // setPrice(price); 
+    // cartUpdate(cartId, {newProducts: newCart}, price )
+    // .then(data => {
+    //   if (data.error){
+    //     return setError(data.error)
+    //   }
+    //   alert("Successfully Updated the cart");
 
-      preload()
-    })
+    //   preload()
+    // })
 
 
   };
@@ -76,10 +93,12 @@ const navigate = useNavigate();
   const cartArea = () => {
     return (
       <section className="cart_area">
+    
         <div className="container">
           <div className="cart_inner">
             <div className="table-responsive">
-              {products.length == 0 && (
+      
+              {products && products.length == 0 && (
                 <div className=" d-flex h-75 align-items-center " style={{minHeight: "50vh"}}>
 <h4 className="text-center w-100 bg-warning text-danger p-2 rounded mt-3">
                   There are no products in your cart! Start Shopping
@@ -87,7 +106,7 @@ const navigate = useNavigate();
                 </div>
                 
               )}
-              {products.length > 0 && (
+              {products && products.length > 0 && (
                 <>
                   <table className="table">
                     <thead>
@@ -99,7 +118,8 @@ const navigate = useNavigate();
                       </tr>
                     </thead>
                     <tbody>
-                      {products.length > 0 &&
+
+                      {products && products.length > 0 &&
                         products.map((prod, key) => {
                           return (
                             <tr key={key}>
@@ -109,12 +129,12 @@ const navigate = useNavigate();
                                     <img src="img/cart.jpg" alt="" />
                                   </div>
                                   <div className="media-body">
-                                    <p>{prod.productId.name}</p>
+                                    <p>{prod.name}</p>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <h5>&#x20B9;{prod.productId.price}</h5>
+                                <h5>&#x20B9;{prod.price}</h5>
                               </td>
                               <td className=" d-flex justify-content-center ">
                                 <div className="product_count w-25">
@@ -122,7 +142,7 @@ const navigate = useNavigate();
                                     type="number"
                                     name="qty"
                                     id={prod._id}
-                                    max={prod.productId.stock}
+                                    max={prod.stock}
                                     value={prod.count}
                                     onChange={handleChange(prod._id)}
                                     className=" form-control text-center "
@@ -131,7 +151,7 @@ const navigate = useNavigate();
                               </td>
                               <td>
                                 <h5>
-                                  &#x20B9;{prod.productId.price * prod.count}
+                                  &#x20B9;{prod.price * prod.count}
                                 </h5>
                               </td>
                             </tr>
@@ -227,7 +247,32 @@ Proceed to checkout
 
   return (
     <Base>
-      {cartArea()}
+    {/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Shopping Cart</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Cart</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
+    {products && products.length > 0 && cartArea() }
+    {!products && (
+      <div className=" d-flex h-75 align-items-center " style={{minHeight: "50vh"}}>
+      <h4 className="text-center w-100 bg-warning text-danger p-2 rounded mt-3">
+                        There are no products in your cart! Start Shopping
+                      </h4>
+                      </div>
+    )}
+      
     </Base>
   );
 };

@@ -4551,6 +4551,7 @@ label {
 
 .order_box {
   background: #e5ecee;
+  border: 1px solid #555555;
   padding: 30px; }
   .order_box h2 {
     border-bottom: 1px solid #dddddd;

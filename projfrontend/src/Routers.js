@@ -16,6 +16,9 @@ import UpdateCategory from "./admin/UpdateCategory";
 import Cart from "./user/Cart";
 import TermsandConditions from "./core/TermsandConditions";
 import Checkout from "./order/Checkout.js";
+import Orders from "./admin/Orders";
+import Contact from "./core/Contact";
+import NotFound from "./core/NotFound";
 export default function Routers() {
   return (
     <BrowserRouter>
@@ -23,6 +26,7 @@ export default function Routers() {
         <Route path='/' exact element={<Home />} />
         <Route path='/signup' exact element={<Signup/>} />
         <Route path='/signin' exact element={<Signin/>} />
+        <Route path='/contact-us' exact element={<Contact/>} />
         <Route path='/terms-conditions' exact element={<TermsandConditions/>} />
 
         <Route
@@ -55,6 +59,14 @@ export default function Routers() {
             element={
               <AdminRoute>
                 <AdminDashboard />
+              </AdminRoute>
+            }
+          />
+        <Route
+            path="/admin/orders"
+            element={
+              <AdminRoute>
+                <Orders />
               </AdminRoute>
             }
           />
@@ -107,7 +119,8 @@ export default function Routers() {
             }
           />
         
-        
+        <Route path="*" element={<NotFound />} />
+
       </Routes>
     </BrowserRouter>
   );

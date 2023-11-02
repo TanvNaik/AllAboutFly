@@ -18,7 +18,8 @@ exports.getUser = (req, res) => {
   req.profile.encry_password = undefined;
   req.profile.createdAt = undefined;
   req.profile.updatedAt = undefined;
-  return res.json(req.profile);
+  return res.json({
+    user: req.profile});
 };
 
 exports.updateUser = (req, res) => {

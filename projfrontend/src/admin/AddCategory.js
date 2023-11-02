@@ -70,10 +70,26 @@ const AddCategory = () => {
   };
   return (
     <Base
-      title='Create a new Category'
-      description=''
-      className='container  p-4'
+      
     >
+      {/* <!-- Start Banner Area --> */}
+    <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Admin Category</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              <a href="single-product.html">Dashboard<span className="lnr lnr-arrow-right"></span> </a>
+              <a href="single-product.html">Add Category </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
       <div className='row   pt-2'>
         <div className='col-md-8 offset-md-2 bg-white rounded p-2 '>
           {succesMessage()}

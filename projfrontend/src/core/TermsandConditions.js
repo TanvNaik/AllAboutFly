@@ -4,6 +4,24 @@ import Base from './Base'
 export default function TermsandConditions() {
   return (
     <Base>
+     {/* <!-- Start Banner Area --> */}
+     <section className="banner-area organic-breadcrumb">
+      <div className="container">
+        <div className="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+          <div className="col-first">
+            <h1>Terms and Conditions</h1>
+            <nav className="d-flex align-items-center">
+              <a href="index.html">
+                Home<span className="lnr lnr-arrow-right"></span>
+              </a>
+              
+              <a href="single-product.html"> Policies </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* <!-- End Banner Area --> */}
     <div className='container'>
     <br/>
         <br/>

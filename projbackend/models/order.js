@@ -26,21 +26,27 @@ default:[]},
 
 const OrderSchema = new mongoose.Schema(
   {
-    products: {
+    productCart: {
       type: ObjectId,
-      ref: "Cart"
+      ref: "ProductCart"
     },
-    transaction_id: {},
+    // transaction_id: String,
+    email: String,
+    // invoice:{
+    //   type: ObjectId,
+    //   ref: "Invoice"
+    // },
     amount: {
       type: Number
     },
     address: {
       type: String
     },
+    contact_no: Number,
     status: {
       type: String,
       default: "Recieved",
-      enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"]
+      enum: ["Cancelled", "Delivered", "Shipped", "Processing","Confirmed" ,"Recieved"]
     },
     updated: Date,
     user: {
